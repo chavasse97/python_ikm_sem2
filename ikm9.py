@@ -26,17 +26,17 @@ class MyStack:
 
 def Command(command, *args):
     if command == "size":
-        print(stack.size())
+        print("size =", stack.size())
     elif command == "back":
       try:  
-        print(stack.last())
+        print("Last element =", stack.last())
       except IndexError:
-        print('index error(a stack has no elements)')
+        print('IndexError: a stack has no elements')
     elif command == "pop":
       try:
-        print(stack.pop())
+        print("Element deleted:", stack.pop())
       except IndexError:
-        print('index error(a stack has no elements)')
+        print('IndexError: a stack has no elements')
     elif command == "clear":
         stack.clear()
         print("ok")
@@ -45,17 +45,26 @@ def Command(command, *args):
         stack.push(int(args[0]))
         print("ok")
       except ValueError:
-        print('value error(an element "', args[0], '" is not a number)')
+        print('ValueError: an element "', args[0], '" is not a number')
       except IndexError:
-        print('index error(input an element)')
+        print('IndexError: input an element')
     elif command == "exit":
         print("bye")
+    elif command == "help":
+       print("push n - adds new element(n) to the stack")
+       print("size - shows a size of the stack")
+       print("back - shows a last element of the stack")
+       print("pop - deletes a last element of the stack")
+       print("clear - deletes all elements in the stack")
+       print("exit - ends the program")
     else:
-       print('command "', command, '" does not exist')
+       print('Command "', command, '" does not exist')
+       print('Type "help" to see available commands')
 
 
 stack = MyStack()
 while True:
+    print("Input a command:", end=' ')
     command, *args = input().split()
     Command(command, *args)
     if command == "exit":
