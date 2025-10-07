@@ -40,7 +40,7 @@
 ### exit
 ### bye
 
-## Стек был построен с помощью списка, так как размер стека постоянно меняется и по структуре они похожи.
+## Стек был построен с помощью списка, так как размер стека будет постоянно меняться и по структуре они похожи.
 
 ### Был реализован класс MyStack, в котором прописаны необходимые функции для работы программы:
 ```python
@@ -91,25 +91,25 @@ def clear(self):
 
 ```python
 if command == "size":
-        print(stack.size())
+        print("size =", stack.size())
 ```
 Вызов классовой функции для вывода размера стека
 
 ```python
 elif command == "back":
       try:  
-        print(stack.last())
+        print("Last element =", stack.last())
       except IndexError:
-        print('index error(a stack has no elements)')
+        print('IndexError: a stack has no elements')
 ```
 Вызов команды для вывода последнего элемента. Если стек пустой, то обрабатывается исключение IndexError и выводится сообщение о том что в стеке нет элементов
 
 ```python
 elif command == "pop":
       try:
-        print(stack.pop())
+        print("Element deleted:", stack.pop())
       except IndexError:
-        print('index error(a stack has no elements)')
+        print('IndexError: a stack has no elements')
 ```
 Вызов классового метода pop. Так же обработка того же исключения как в случае с "back"
 
@@ -134,12 +134,22 @@ elif command == "push":
 IndexError обрабатывается если при вводе после "push" ничего не было введено (только сам "push")
 
 ```python
-elif command == "exit":
-        print("bye")
+elif command == "help":
+       print("push n - adds new element(n) to the stack")
+       print("size - shows a size of the stack")
+       print("back - shows a last element of the stack")
+       print("pop - deletes a last element of the stack")
+       print("clear - deletes all elements in the stack")
+       print("exit - ends the program")
+```
+Список существующих комманд(дружественный интерфейс)
+
+```python
 else:
        print('command "', command, '" does not exist')
+       print('Type "help" to see available commands')
 ```
-Случай если введена несуществующая команда
+Случай если введена несуществующая команда. Также предлагает вывести список существующих комманд
 
 ### В самой программе сначала обозначается стек:
 ```python
@@ -149,6 +159,7 @@ stack = MyStack()
 ### Дальше запускается бесконечный цикл который принимает ввод с клавиатуры и вызывает метод выполнения комманд:
 ```python
 while True:
+    print("Input a command:", end=' ')
     command, *args = input().split()
     Command(command, *args)
 ```
