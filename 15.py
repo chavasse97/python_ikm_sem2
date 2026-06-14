@@ -1,6 +1,3 @@
-import os # Используется только для очистки консоли
-import subprocess # Используется только для очистки консоли
-
 def rpn_evaluate(expression):
     tokens = expression.split() # Чтение выражения
     stack = []
@@ -67,16 +64,7 @@ def examples(): # Вспомогательная функция: примеры 
     print("Примечание для ввода: Числа и знаки выражения разделяются пробелами.")     
 
 def clear(): # Вспомогательная функция: очистка консоли
-    try:
-        # В Windows ('nt') используется команда 'cls'
-        if os.name == 'nt':
-            subprocess.run(['cls'], shell=True, check=True)
-        # В Linux и macOS используется команда 'clear'
-        else:
-            subprocess.run(['clear'], check=True)
-    except (subprocess.SubprocessError, FileNotFoundError):
-        # Если другая операционная система (Резервный метод)
-        print("\n" * 100) # Вывод пустых строк
+    print("\n" * 100) # Вывод пустых строк
     print("Консоль очищена.")
 
 def exit(): # Вспомогательная функция: Завершение программы
